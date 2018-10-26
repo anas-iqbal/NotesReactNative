@@ -6,7 +6,8 @@ class HomeScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button style={{alignSelf:'stretch',justifyContent: 'center', marginTop:5, marginRight:5, marginLeft:5,marginBottom:5 } }><Text style={{color:'#fff'}}>Add Note</Text></Button>
+                <Button style={{alignSelf:'stretch', backgroundColor:'#AB47BC' ,justifyContent: 'center', marginTop:5, marginRight:5, marginLeft:5,marginBottom:5 } }><Text style={{color:'#fff'}}>NEW NOTE</Text></Button>
+                <Text style={{marginLeft:5,fontSize:22, color:'#AB47BC'}}>Notes</Text>
             </View>
         );
     }
