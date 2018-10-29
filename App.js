@@ -3,6 +3,7 @@ import React from 'react';
 import { StyleSheet, Text, View,AppRegistry } from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 import HomeScreen from './screens/HomeScreen';
+import NoteScreem from './screens/NoteScreen';
 
 const appNavigator = createStackNavigator({
     Home: {
@@ -14,6 +15,17 @@ const appNavigator = createStackNavigator({
                 backgroundColor: '#AB47BC'
             },
         })
+    },
+    Note:{
+        screen: NoteScreem,
+        navigationOptions: ({navigation}) => ({
+            title: "Note",
+            headerTintColor: 'white',
+            headerStyle: {
+                backgroundColor: '#AB47BC'
+            },
+        })
+
     }
 
 })
