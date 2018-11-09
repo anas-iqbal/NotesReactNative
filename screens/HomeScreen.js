@@ -1,19 +1,27 @@
 import React from 'react';
-import {StyleSheet, Text, View, FlatList, TouchableNativeFeedback} from 'react-native';
+import {StyleSheet, Text, View, FlatList, TouchableNativeFeedback, AsyncStorage} from 'react-native';
 import {Button} from 'native-base';
 
 
-const Notes = [
-    {title: "Class notes", note: "Gonna do a lot of work to today, hell yeah!!!", date: "11-2-2012"},
-    {title: "Useful websites", note: "list of sites that are usefull", date: "11-2-2012"},
-    {title: "bio class", note: "learn a lot of dirty things today", date: "11-2-2012"},
-    {title: "India", note: "Delhi", date: "11-2-2012"},
-
-]
+// const Notes = [
+//     {title: "Class notes", note: "Gonna do a lot of work to today, hell yeah!!!", date: "11-2-2012"},
+//     {title: "Useful websites", note: "list of sites that are usefull", date: "11-2-2012"},
+//     {title: "bio class", note: "learn a lot of dirty things today", date: "11-2-2012"},
+//     {title: "India", note: "Delhi", date: "11-2-2012"},
+//
+// ]
 
 
 class HomeScreen extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            notesList:[]
+        };
+
+    }
     render() {
+        this.loadData()
         return (
             <View style={styles.container}>
                 <Button
@@ -29,7 +37,8 @@ class HomeScreen extends React.Component {
                     }}><Text style={{color: '#fff'}}>NEW NOTE</Text></Button>
                 <Text style={{marginLeft: 5, fontSize: 28, color: '#AB47BC'}}>Notes</Text>
                 <FlatList
-                    data={Notes}
+                    data={this.state.notesList}
+                    extraData={this.state}
                     renderItem={({item}) => (
                         <TouchableNativeFeedback
                             background={TouchableNativeFeedback.SelectableBackground()}>
@@ -44,8 +53,12 @@ class HomeScreen extends React.Component {
             </View>
         );
     }
+    async loadData() {
+        //alert(JSON.stringify(this.state.notesList))
+        this.state.notesList = JSON.parse(await AsyncStorage.getItem('Notes'))
+        //alert(JSON.stringify(this.state.notesList))
+    }
 }
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,

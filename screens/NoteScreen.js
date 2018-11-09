@@ -5,6 +5,7 @@ import moment, * as moments from 'moment';
 
 
 class NoteScreen extends React.Component {
+
     constructor(props){
         super(props)
         this.state = {
@@ -44,111 +45,20 @@ class NoteScreen extends React.Component {
 
 
     async saveNote(title, note) {
-         const date =moment().format('MMMM Do YYYY, h:mm:ss a');
+        //var arrString=["hello"];
+        const date =moment().format('MMMM Do YYYY, h:mm:ss a');
         var Notes=[];
         var obj = {
             note:note,
             title:title,
             date:date,
         };
-        var value = await AsyncStorage.getItem('Notes');
-        if (value != null){
-           // alert("Not Empty"+JSON.parse(JSON.stringify(value)))
-            Notes=JSON.parse(JSON.stringify(value))
-            alert(JSON.parse(JSON.stringify(Notes)))
-            // Notes.push(obj)
-            // try {
-            //     AsyncStorage.setItem("Notes",JSON.stringify(Notes))
-            // } catch (error) {
-            //     alert("Error");
-            // }
-            // var getNotes= await AsyncStorage.getItem('Notes')
-            // alert(JSON.stringify((getNotes)))
-            //AsyncStorage.clear()
-
-            // Notes=[JSON.parse(value)]
-            // // var obj = {
-            // //     note: note,
-            // //     title: title,
-            // //     date: date,
-            // // };
-            // // Notes.push(obj)
-            // alert("khani nehi"+JSON.stringify(Notes))
-        }
-        else{
-            Notes.push(obj)
-          //  alert("Khali HA"+JSON.stringify(Notes))
-
-         //   alert(JSON.stringify(Notes))
-            try {
-                   AsyncStorage.setItem("Notes",JSON.stringify(Notes))
-                } catch (error) {
-                    alert("Error");
-                }
-           var getNotes= await AsyncStorage.getItem('Notes')
-            alert(JSON.stringify((getNotes)))
-
-           // alert(getNotes)
-
-        }
-        //
-        //
-        // try {
-        //         AsyncStorage.setItem("Notes",JSON.stringify(Notes))
-        //     } catch (error) {
-        //         alert("Error");
-        //     }
-        // AsyncStorage.getItem('Notes')
-        //     .then((value) => {
-        //      //    const data = JSON.parse(value);
-        //      // //   console.log('name is ', data.name);
-        //      //    alert(data.note)
-        //     });
-        //
-        //
-        //
-
-
-
-
-
-        //
-        // const date =moment().format('MMMM Do YYYY, h:mm:ss a');
-        // var obj = {
-        //     note: note,
-        //     title: title,
-        //     date: date,
-        // };
-        //
-        // var Notes=[]
-        // let value = await AsyncStorage.getItem('Notes');
-        // if (value != null){
-        //     alert("Khali Nehi")
-        //     Notes.push(obj)
-        // }
-        // else{
-        //     alert("Khali Ha")
-        //     Notes={obj}
-        // }
-        //
-        // //Notes.push(obj)
-        //
-        // //alert(JSON.stringify(Notes))
-        //
-        //
-        // try {
-        //         AsyncStorage.setItem("Notes",JSON.stringify(Notes))
-        //     } catch (error) {
-        //         alert("Error");
-        //     }
-        // AsyncStorage.getItem('Notes')
-        //     .then((value) => {
-        //         const data = JSON.parse(value);
-        //      //   console.log('name is ', data.name);
-        //         alert(data.note)
-        //     });
+        var notes=JSON.parse(await AsyncStorage.getItem('Notes'))
+        alert(JSON.stringify(notes))
+        Notes=notes;
+        Notes.push(obj)
+        AsyncStorage.setItem("Notes", JSON.stringify(Notes))
      }
-
 
 }
 
@@ -168,12 +78,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         height: 500,
         //   selectionColor:'#AB47BC',
-        tintColor: '#AB47BC',
         backgroundColor: '#E8E8E8',
         textAlignVertical: 'top',
         justifyContent: "flex-start"
     }
-
-
 });
 export default NoteScreen
