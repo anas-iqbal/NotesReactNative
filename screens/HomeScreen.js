@@ -13,15 +13,15 @@ import {Button} from 'native-base';
 
 
 class HomeScreen extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            notesList:[]
+            notesList: [],
         };
-
-    }
-    render() {
         this.loadData()
+    }
+
+    render() {
         return (
             <View style={styles.container}>
                 <Button
@@ -53,12 +53,21 @@ class HomeScreen extends React.Component {
             </View>
         );
     }
+
     async loadData() {
         //alert(JSON.stringify(this.state.notesList))
         this.state.notesList = JSON.parse(await AsyncStorage.getItem('Notes'))
-        //alert(JSON.stringify(this.state.notesList))
+        this.setState({
+            noteList:this.state.notesList
+        })
+
+        alert(JSON.stringify(this.state.notesList))
+        //   this.state.notesList = true
+        // alert(JSON.stringify(this.state.notesList))
+
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
