@@ -19,14 +19,6 @@ const appNavigator = createStackNavigator({
     },
     Note: {
         screen: NoteScreem,
-        navigationOptions: ({navigation}) => ({
-            title: "Note",
-            headerTintColor: 'white',
-            headerStyle: {
-                backgroundColor: '#AB47BC'
-            },
-        })
-
     }
 
 })

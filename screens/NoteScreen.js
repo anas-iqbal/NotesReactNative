@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View, TextInput, AsyncStorage} from 'react-native';
+import {StyleSheet, Text, View, TextInput, AsyncStorage, Platform, SafeAreaView} from 'react-native';
 import {Button} from 'native-base';
 import moment, * as moments from 'moment';
 
 
 class NoteScreen extends React.Component {
+    static navigationOptions = { header: null };
 
     constructor(props){
         super(props)
@@ -14,7 +15,7 @@ class NoteScreen extends React.Component {
     }
     render() {
         return (
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <View style={styles.textAreaContainer}>
                     <TextInput
                         style={styles.textArea}
@@ -39,7 +40,7 @@ class NoteScreen extends React.Component {
                         marginBottom: 5
                     }}><Text style={{color: '#fff'}}>NEW NOTE</Text></Button>
 
-            </View>
+            </SafeAreaView>
         );
     }
 
@@ -66,6 +67,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        height: (Platform.OS === 'ios') ? 18 : 0, //this is just to test if the platform is iOS to give it a height of 18, else, no height (Android apps have their own status bar)
+
     },
 
     textAreaContainer: {
